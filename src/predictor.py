@@ -2,6 +2,10 @@
 预测模块 - 使用训练好的模型进行水果识别
 """
 import os
+import sys
+
+# 添加项目根目录到Python路径
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import numpy as np
 from tensorflow.keras.models import load_model
 from utils.config import MODEL_PATH, FRUIT_CLASSES, CLASS_NAMES_CN, IMG_SIZE
@@ -30,7 +34,8 @@ class FruitPredictor:
             raise FileNotFoundError(f"模型文件不存在: {self.model_path}")
         
         print(f"正在加载模型: {self.model_path}")
-        self.model = load_model(self.model_path)
+        # 使用compile=False解决Keras版本兼容性问题
+        self.model = load_model(self.model_path, compile=False)
         print("✅ 模型加载成功")
     
     def predict(self, image_path):

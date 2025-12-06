@@ -2,6 +2,11 @@
 数据准备模块 - 负责数据集的下载、组织和预处理
 """
 import os
+import sys
+
+# 添加项目根目录到Python路径
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import shutil
 from pathlib import Path
 from utils.config import (

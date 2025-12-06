@@ -2,6 +2,10 @@
 模型评估模块 - 评估已训练模型的性能
 """
 import os
+import sys
+
+# 添加项目根目录到Python路径
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -26,7 +30,8 @@ def load_trained_model(model_path=MODEL_PATH):
         raise FileNotFoundError(f"模型文件不存在: {model_path}")
     
     print(f"加载模型: {model_path}")
-    model = load_model(model_path)
+    # 使用compile=False解决Keras版本兼容性问题
+    model = load_model(model_path, compile=False)
     print("✓ 模型加载成功")
     return model
 

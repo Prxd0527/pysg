@@ -2,6 +2,10 @@
 模型训练模块 - 使用迁移学习训练水果分类模型
 """
 import os
+import sys
+
+# 添加项目根目录到Python路径
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import numpy as np
 import matplotlib.pyplot as plt
 from tensorflow.keras.applications import MobileNetV2
